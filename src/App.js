@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 
 function App() {
   const [state, setState] = useState(null)
+  const [user, setUser] = useState(null)
   const fetchState = async () => {
     try {
       const response = await fetch('/api/test')
@@ -13,6 +14,8 @@ function App() {
     }
   }
 
+
+  
 useEffect(() => {
   fetchState()
 }, [])
