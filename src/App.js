@@ -1,28 +1,40 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import AuthPage from './pages/AuthPage/AuthPage';
+import NewOrderPage from './pages/NewOrderPage/NewOrderPage';
+import OrderHistoryPage from './pages/OrderHistoryPage/OrderHistoryPage';
+import { Routes, Route} from 'react-router-dom'
 
 function App() {
   const [state, setState] = useState(null)
-  const [user, setUser] = useState(null)
+  const [user, setUser ] = useState(null)
+
   const fetchState = async () => {
     try {
       const response = await fetch('/api/test')
       const data = await response.json()
       setState(data)
-    } catch(error) {
+    } catch (error) {
       console.error(error)
     }
   }
 
-
+  useEffect(() => {
+    fetchState()
+  }, [])
   
-useEffect(() => {
-  fetchState()
-}, [])
   return (
-    <div className="App">
-    { state && state.eurika ? <>{state.eureka}</> : <>You are still looking don't give up</>}
-    </div>
+    <main className="App">
+      {
+        user ?
+        <Routes>
+          <Route path="/orders/new" element={<NewOrderPage />} />
+          <Route path="/orders" element={<OrderHistoryPage />} />
+        </Routes>
+         :
+        <AuthPage/>
+      }
+    </main>
   );
 }
 
