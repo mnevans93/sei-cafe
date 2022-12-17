@@ -1,9 +1,9 @@
-import './App.css';
 import { useState, useEffect } from 'react';
-import AuthPage from './pages/AuthPage/AuthPage';
-import NewOrderPage from './pages/NewOrderPage/NewOrderPage';
-import OrderHistoryPage from './pages/OrderHistoryPage/OrderHistoryPage';
-import NavBar from './components/NavBar';
+import AuthPage from '../AuthPage/AuthPage';
+import NewOrderPage from '../NewOrderPage/NewOrderPage';
+import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
+import FruitsPage from '../FruitsPage/FruitsPage';
+import NavBar from './components/NavBar/NavBar';
 import { Routes, Route} from 'react-router-dom'
 
 function App() {
@@ -31,6 +31,7 @@ function App() {
         <>
           <NavBar />
           <Routes>
+            <Route path="/fruits" element={<FruitsPage />} />
             <Route path="/orders/new" element={<NewOrderPage />} />
             <Route path="/orders" element={<OrderHistoryPage/>} />
           </Routes>
